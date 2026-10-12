@@ -24,6 +24,10 @@ export class TrainingList {
     this.trainingCatalog.update(formations => formations.filter(f => f.id != idTraining));
   }
 
+  onUpdateTraining(formation:Training){
+    this.trainingCatalog.update(formations => formations.map(f => (f.id == formation.id) ? formation : f));
+  }
+
   constructor(){
     effect(() => console.log(this.trainingCatalog()));
   }

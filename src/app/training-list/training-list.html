@@ -3,7 +3,7 @@
   @for(training of trainingCatalog(); track training.id){
     <!-- <li>Nom: {{train.name}} - NbJours: {{train.nbDays}} <input type="checkbox" disabled [checked]="train.isFree"> Graduit</li> -->
     <li>
-      <app-training-item [training]="training" [position]="$index+1"></app-training-item>
+      <app-training-item [training]="training" [position]="$index+1" (deleteTraining)="onRemoveTraining($event)"></app-training-item>
     </li>
   }
 </ul>
@@ -13,4 +13,6 @@
   Nombre de jours: <input type="number" #nbdays> <br>
   Disponible: <input type="checkbox" #free> <br>
   <button (click)="ajouterTraining(name.value, nbdays.value, free.checked)">Ajouter</button>
+  <br>
+  {{trainingCatalog() | json}}
 </div>

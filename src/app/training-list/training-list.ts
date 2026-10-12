@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { Training } from '../../application/training';
 import { TrainingItem } from '../training-item/training-item';
+import { JsonPipe } from '@angular/common';
 @Component({
-  imports: [TrainingItem],
+  imports: [TrainingItem, JsonPipe],
   selector: 'app-training-list',
   styleUrl: './training-list.css',
   templateUrl: './training-list.html',
@@ -17,5 +18,13 @@ export class TrainingList {
 
   ajouterTraining(name:string, nbdays: string, isfree: boolean){
     this.trainingCatalog.update(tc => [...tc, {id: Math.floor(Math.random()*1000), name:name, nbDays: Number(nbdays), isFree:isfree}]);
+  }
+
+  onRemoveTraining(idTraining:number){
+    this.trainingCatalog.update(formations => formations.filter(f => f.id != idTraining));
+  }
+
+  constructor(){
+    effect(() => console.log(this.trainingCatalog()));
   }
 }

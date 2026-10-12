@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Training } from '../../application/training';
 
 @Component({
@@ -10,4 +10,9 @@ import { Training } from '../../application/training';
 export class TrainingItem {
   training = input.required<Training>();
   indice = input.required<number>({alias:'position'});
+
+  deleteTraining = output<number>();
+  onDelete(){
+    this.deleteTraining.emit(this.training().id);
+  }
 }

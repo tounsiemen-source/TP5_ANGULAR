@@ -1,0 +1,16 @@
+<h2>Liste des formations sans composants enfant</h2>
+<ul>
+  @for(training of trainingCatalog(); track training.id){
+    <!-- <li>Nom: {{train.name}} - NbJours: {{train.nbDays}} <input type="checkbox" disabled [checked]="train.isFree"> Graduit</li> -->
+    <li>
+      <app-training-item [training]="training" [position]="$index+1"></app-training-item>
+    </li>
+  }
+</ul>
+<div>
+  <h3>Ajouter une formation</h3>
+  Nom: <input type="text" #name> <br>
+  Nombre de jours: <input type="number" #nbdays> <br>
+  Disponible: <input type="checkbox" #free> <br>
+  <button (click)="ajouterTraining(name.value, nbdays.value, free.checked)">Ajouter</button>
+</div>
